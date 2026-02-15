@@ -146,7 +146,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1656513.0,
           "fark": -623748.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "AFYON",
@@ -294,7 +296,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1206523.0,
           "fark": 76580.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "AKSARAY",
@@ -442,7 +446,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1197525.0,
           "fark": -215371.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ANKARA",
@@ -590,7 +596,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 12331238.0,
           "fark": -753433.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ANTALYA",
@@ -738,7 +746,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2167710.0,
           "fark": 799853.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "AVRUPA",
@@ -886,7 +896,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 20185391.0,
           "fark": -17065280.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "AYDIN",
@@ -1034,7 +1046,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 744631.0,
           "fark": -376224.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "BABAESKİ",
@@ -1182,7 +1196,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 909107.0,
           "fark": -633395.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "BALIKESİR",
@@ -1330,7 +1346,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1554710.0,
           "fark": -300743.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "BAŞKENT",
@@ -1478,7 +1496,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 641858.0,
           "fark": 21307.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "BURSA",
@@ -1626,7 +1646,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 5833645.0,
           "fark": -416495.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "DENİZLİ",
@@ -1774,7 +1796,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 623239.0,
           "fark": 6342.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "DÜZCE",
@@ -1922,7 +1946,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2121943.0,
           "fark": -135729.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "DİYARBAKIR",
@@ -2070,7 +2096,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2461751.0,
           "fark": 255279.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ELAZIĞ",
@@ -2218,7 +2246,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1302229.0,
           "fark": 149660.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ERZURUM",
@@ -2366,7 +2396,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 627260.0,
           "fark": 94496.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ESKİŞEHİR",
@@ -2514,7 +2546,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 754128.0,
           "fark": 133045.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "GAZİANTEP",
@@ -2662,7 +2696,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 7315426.0,
           "fark": -484060.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "HATAY",
@@ -2810,7 +2846,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2379808.0,
           "fark": 3305490.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "KAYSERİ",
@@ -2958,7 +2996,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 3820766.0,
           "fark": 379616.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "KOCAELİ",
@@ -3106,7 +3146,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 6763692.0,
           "fark": -2907072.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "KONYA",
@@ -3254,7 +3296,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1324565.0,
           "fark": -215646.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MALATYA",
@@ -3402,7 +3446,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 583616.0,
           "fark": 107452.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MANİSA",
@@ -3550,7 +3596,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2512701.0,
           "fark": -54584.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MARDİN",
@@ -3698,7 +3746,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1343362.0,
           "fark": -77364.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MERSİN",
@@ -3846,7 +3896,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1352025.0,
           "fark": 240382.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MERZİFON",
@@ -3994,7 +4046,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1114033.0,
           "fark": -47261.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "MUĞLA",
@@ -4142,7 +4196,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1663710.0,
           "fark": -275218.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "SAMSUN",
@@ -4290,7 +4346,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 3480591.0,
           "fark": -84071.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "SİVAS",
@@ -4438,7 +4496,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 781747.0,
           "fark": -21356.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "TRABZON",
@@ -4586,7 +4646,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1334230.0,
           "fark": -138547.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "TRAKYA",
@@ -4734,7 +4796,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 2043456.0,
           "fark": -1524984.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "VAN",
@@ -4882,7 +4946,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 1083989.0,
           "fark": -28027.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ÇANAKKALE",
@@ -5030,7 +5096,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 432734.0,
           "fark": -2384.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "İZMİR",
@@ -5178,7 +5246,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 4368340.0,
           "fark": -428633.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     },
     {
       "id": "ŞANLIURFA",
@@ -5326,7 +5396,9 @@ const DASHBOARD_DATA = {
           "gercek_toplam": 784822.0,
           "fark": 301698.0
         }
-      ]
+      ],
+      "daily": {},
+      "anomali": {}
     }
   ],
   "meta": {
@@ -5342,6 +5414,7 @@ const DASHBOARD_DATA = {
       "Stacked_LSTM",
       "TiDE"
     ],
-    "guncelleme": "2026-02-10"
+    "guncelleme": "2026-02-15",
+    "has_detail": false
   }
 };

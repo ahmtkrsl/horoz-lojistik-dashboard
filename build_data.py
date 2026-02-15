@@ -3,6 +3,8 @@
 build_data.py
 CSV verilerini okuyup isleme yapar ve dashboard icin data.js dosyasi uretir.
 Kullanim: python build_data.py
+
+v2: gunluk_tahminler.csv ve anomali_sonuclari.csv destegi eklendi.
 """
 
 import pandas as pd
@@ -73,12 +75,77 @@ def get_sehir_adi(merkez_id):
     """Aktarma merkezi ID'sinden goruntulenecek sehir adini dondurur."""
     if merkez_id in SEHIR_ESLESMESI:
         return SEHIR_ESLESMESI[merkez_id]
-    # Diger merkezler: ilk harf buyuk, geri kalan kucuk
     return merkez_id.capitalize() if merkez_id.isascii() else merkez_id.title()
 
 
+def load_daily_data():
+    """gunluk_tahminler.csv dosyasini okur, sadece Validation satirlarini dondurur.
+    Dosya yoksa None dondurur."""
+    path = os.path.join(CSV_DIR, "gunluk_tahminler.csv")
+    if not os.path.exists(path):
+        print(f"  [UYARI] gunluk_tahminler.csv bulunamadi: {path}")
+        return None
+    df = pd.read_csv(path, encoding="utf-8-sig")
+    print(f"  gunluk_tahminler.csv okundu: {len(df)} satir")
+    df_val = df[df["Veri_Seti"] == "Validation"].copy()
+    print(f"  Validation satirlari: {len(df_val)}")
+    return df_val
+
+
+def load_anomaly_data():
+    """anomali_sonuclari.csv dosyasini okur. Dosya yoksa None dondurur."""
+    path = os.path.join(CSV_DIR, "anomali_sonuclari.csv")
+    if not os.path.exists(path):
+        print(f"  [UYARI] anomali_sonuclari.csv bulunamadi: {path}")
+        return None
+    df = pd.read_csv(path, encoding="utf-8-sig")
+    print(f"  anomali_sonuclari.csv okundu: {len(df)} satir")
+    return df
+
+
+def build_daily_dict(df_val, merkez_id):
+    """Bir merkez icin gunluk tahmin verisini model bazli dict'e cevirir."""
+    if df_val is None:
+        return {}
+    mdf = df_val[df_val["AKTARMA_MERKEZI"] == merkez_id]
+    if mdf.empty:
+        return {}
+    result = {}
+    for model_name, gdf in mdf.groupby("Model"):
+        gdf = gdf.sort_values("ds").reset_index(drop=True)
+        result[model_name] = {
+            "ds": gdf["ds"].tolist(),
+            "y": [round(v, 2) if pd.notna(v) else None for v in gdf["y"]],
+            "y_pred": [round(v, 2) if pd.notna(v) else None for v in gdf["y_pred"]],
+        }
+    return result
+
+
+def build_anomaly_dict(df_anom, merkez_id):
+    """Bir merkez icin anomali verisini model bazli dict'e cevirir."""
+    if df_anom is None:
+        return {}
+    mdf = df_anom[df_anom["AKTARMA_MERKEZI"] == merkez_id]
+    if mdf.empty:
+        return {}
+    result = {}
+    for model_name, gdf in mdf.groupby("Model"):
+        gdf = gdf.sort_values("ds").reset_index(drop=True)
+        rows = []
+        for _, row in gdf.iterrows():
+            rows.append({
+                "ds": row["ds"],
+                "y": round(row["y"], 2) if pd.notna(row["y"]) else None,
+                "y_pred": round(row["y_pred"], 2) if pd.notna(row["y_pred"]) else None,
+                "votes": int(row["Total_Votes"]),
+                "seviye": row["Seviye"],
+            })
+        result[model_name] = rows
+    return result
+
+
 def main():
-    # --- 1. CSV OKU ---
+    # --- 1. ANA CSV OKU ---
     csv_path = os.path.join(CSV_DIR, "otomasyon_checkpoint.csv")
     print(f"CSV okunuyor: {csv_path}")
     df = pd.read_csv(csv_path, encoding="utf-8-sig")
@@ -92,7 +159,13 @@ def main():
     df = df.dropna(subset=["Validation_WMAE", "Holdout_Hata_Orani_%"]).copy()
     print(f"  NaN filtrelendi, kalan: {len(df)}")
 
-    # --- 4. HER MERKEZ ICIN RANKING VE TOP 3 ---
+    # --- 4. YENI CSV'LERI OKU ---
+    print("\nEk veri kaynaklari:")
+    df_daily = load_daily_data()
+    df_anomaly = load_anomaly_data()
+    has_detail = df_daily is not None
+
+    # --- 5. HER MERKEZ ICIN RANKING VE TOP 3 ---
     merkezler_data = []
     merkez_ids = sorted(df["AKTARMA_MERKEZI"].unique())
     print(f"\n{len(merkez_ids)} aktarma merkezi isleniyor...")
@@ -115,7 +188,7 @@ def main():
         mdf_sorted = mdf.sort_values("kombine").reset_index(drop=True)
         top3 = mdf_sorted.head(3)
 
-        # Tahmini Desi: Hata orani en dusuk 3 modelin tahmin ortalaması
+        # Tahmini Desi: Hata orani en dusuk 3 modelin tahmin ortalamasi
         mdf_by_hata = mdf.sort_values("Holdout_Hata_Orani_%").head(3)
         tahmini_desi = mdf_by_hata["Holdout_Tahmin_Toplam"].mean()
 
@@ -157,7 +230,11 @@ def main():
                 "fark": round(row["Holdout_Fark"], 0),
             })
 
-        merkezler_data.append({
+        # Gunluk tahmin ve anomali verileri
+        daily = build_daily_dict(df_daily, merkez_id)
+        anomali = build_anomaly_dict(df_anomaly, merkez_id)
+
+        merkez_obj = {
             "id": merkez_id,
             "sehir": get_sehir_adi(merkez_id),
             "lat": lat,
@@ -167,9 +244,13 @@ def main():
             "ort_hata": round(ort_hata, 2),
             "top3_models": top3_list,
             "tum_modeller": tum_list,
-        })
+            "daily": daily,
+            "anomali": anomali,
+        }
 
-    # --- 5. META BILGI ---
+        merkezler_data.append(merkez_obj)
+
+    # --- 6. META BILGI ---
     model_listesi = sorted(df["Model"].unique().tolist())
 
     output = {
@@ -178,10 +259,11 @@ def main():
             "toplam_merkez": len(merkezler_data),
             "model_listesi": model_listesi,
             "guncelleme": str(date.today()),
+            "has_detail": has_detail,
         },
     }
 
-    # --- 6. data.js DOSYASINA YAZ ---
+    # --- 7. data.js DOSYASINA YAZ ---
     json_str = json.dumps(output, ensure_ascii=False, indent=2)
     js_content = f"const DASHBOARD_DATA = {json_str};\n"
 
@@ -191,11 +273,17 @@ def main():
 
     print(f"\n{OUTPUT_PATH} olusturuldu!")
     print(f"  {len(merkezler_data)} merkez, {len(model_listesi)} model")
+    print(f"  Detay verisi (gunluk/anomali): {'EVET' if has_detail else 'HAYIR'}")
 
     # Ozet
     desi_values = [m["tahmini_desi"] for m in merkezler_data]
     print(f"  Min tahmini desi: {min(desi_values):,.0f}")
     print(f"  Max tahmini desi: {max(desi_values):,.0f}")
+
+    daily_counts = sum(1 for m in merkezler_data if m["daily"])
+    anomaly_counts = sum(1 for m in merkezler_data if m["anomali"])
+    print(f"  Gunluk veri olan merkez: {daily_counts}")
+    print(f"  Anomali verisi olan merkez: {anomaly_counts}")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 /* =============================================================================
    HOROZ LOJISTIK - DASHBOARD APPLICATION
    Leaflet harita, tablo render, click-to-filter etkilesimi
+   v2: Detay paneli gosterme/gizleme eklendi
    ============================================================================= */
 
 (function () {
@@ -10,27 +11,22 @@
   // YARDIMCI FONKSIYONLAR
   // =========================================================================
 
-  /** Sayi formatlama: 1234567 -> "1.234.567" (Turkce) */
   function formatNumber(n) {
     if (n == null || isNaN(n)) return "-";
     return Math.round(n).toLocaleString("tr-TR");
   }
 
-  /** Yuzde formatlama: 47.067 -> "%47,07" */
   function formatPercent(n) {
     if (n == null || isNaN(n)) return "-";
     return "%" + n.toFixed(2).replace(".", ",");
   }
 
-  /** WMAE formatlama: 0.3548 -> "0,3548" */
   function formatWMAE(n) {
     if (n == null || isNaN(n)) return "-";
     return n.toFixed(4).replace(".", ",");
   }
 
-  /** Hata oranina gore renk: dusuk=yesil, yuksek=kirmizi */
   function hataToColor(hata) {
-    // 0% -> tamamen yesil, 50%+ -> tamamen kirmizi
     var t = Math.min(hata / 50, 1);
     var r = Math.round(39 + t * (231 - 39));
     var g = Math.round(174 - t * (174 - 76));
@@ -38,7 +34,6 @@
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
-  /** Tahmini desi degerinden marker yaricapi hesapla */
   function desiToRadius(desi, minDesi, maxDesi) {
     var MIN_R = 8;
     var MAX_R = 32;
@@ -52,16 +47,29 @@
   // =========================================================================
 
   var map;
-  var markers = {};          // merkez_id -> L.circleMarker
-  var selectedMerkez = null; // secili merkez id'si
+  var markers = {};
+  var selectedMerkez = null;
 
   var data = DASHBOARD_DATA;
   var merkezler = data.merkezler;
 
-  // Desi min/max (marker radius icin)
   var desiValues = merkezler.map(function (m) { return m.tahmini_desi; });
   var minDesi = Math.min.apply(null, desiValues);
   var maxDesi = Math.max.apply(null, desiValues);
+
+  // Global erisim (detail.js icin)
+  window.HOROZ_APP = {
+    data: data,
+    merkezler: merkezler,
+    formatNumber: formatNumber,
+    formatPercent: formatPercent,
+    formatWMAE: formatWMAE,
+    showDetail: showDetail,
+    hideDetail: hideDetail,
+    getMerkez: function (id) {
+      return merkezler.find(function (m) { return m.id === id; });
+    },
+  };
 
   // =========================================================================
   // INIT
@@ -80,10 +88,8 @@
   // =========================================================================
 
   function initSummaryCards() {
-    // Toplam merkez
     document.getElementById("stat-merkez").textContent = data.meta.toplam_merkez;
 
-    // En sik top-3'e giren model
     var modelCounts = {};
     merkezler.forEach(function (m) {
       m.top3_models.forEach(function (t) {
@@ -96,13 +102,11 @@
     document.getElementById("stat-best-model").textContent =
       bestModel + " (" + modelCounts[bestModel] + "x)";
 
-    // Ortalama hata
     var totalHata = 0;
     merkezler.forEach(function (m) { totalHata += m.ort_hata; });
     var avgHata = totalHata / merkezler.length;
     document.getElementById("stat-avg-hata").textContent = formatPercent(avgHata);
 
-    // Son guncelleme
     document.getElementById("stat-update").textContent = data.meta.guncelleme;
   }
 
@@ -118,7 +122,6 @@
       scrollWheelZoom: true,
     });
 
-    // CartoDB Positron tile (temiz, acik gorunum)
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
       {
@@ -129,7 +132,6 @@
       }
     ).addTo(map);
 
-    // Marker'lari olustur
     merkezler.forEach(function (m) {
       var radius = desiToRadius(m.tahmini_desi, minDesi, maxDesi);
       var color = hataToColor(m.ort_hata);
@@ -143,7 +145,6 @@
         fillOpacity: 0.75,
       }).addTo(map);
 
-      // Tooltip
       var tooltipHTML = buildTooltipHTML(m);
       marker.bindTooltip(tooltipHTML, {
         className: "merkez-tooltip",
@@ -152,7 +153,6 @@
         sticky: false,
       });
 
-      // Click
       marker.on("click", function () {
         filterByMerkez(m.id);
       });
@@ -205,7 +205,6 @@
 
   function initDropdown() {
     var select = document.getElementById("merkez-select");
-    // Sehir adina gore sirala
     var sorted = merkezler.slice().sort(function (a, b) {
       return a.sehir.localeCompare(b.sehir, "tr");
     });
@@ -245,7 +244,6 @@
       });
     });
 
-    // Sehir sonra WMAE rank'a gore sirala
     items.sort(function (a, b) {
       var c = a.merkez.localeCompare(b.merkez, "tr");
       if (c !== 0) return c;
@@ -327,32 +325,30 @@
   function filterByMerkez(merkez_id) {
     selectedMerkez = merkez_id;
 
-    // Dropdown guncelle
     document.getElementById("merkez-select").value = merkez_id;
-
-    // Reset butonu goster
     document.getElementById("btn-reset").style.display = "inline-block";
 
-    // Tablolari filtrele
+    // Detay butonu: sadece detay verisi varsa goster
+    var merkez = merkezler.find(function (m) { return m.id === merkez_id; });
+    var hasDaily = merkez && merkez.daily && Object.keys(merkez.daily).length > 0;
+    document.getElementById("btn-detail").style.display = hasDaily ? "inline-block" : "none";
+
     initTables(merkez_id);
 
-    // Haritada secili marker'i vurgula
     Object.keys(markers).forEach(function (id) {
       var m = markers[id];
       if (id === merkez_id) {
         m.setStyle({ weight: 4, color: "#f39c12", fillOpacity: 0.9 });
         m.bringToFront();
-        // Haritayi bu noktaya yaklas
-        var merkez = merkezler.find(function (x) { return x.id === id; });
-        if (merkez) {
-          map.setView([merkez.lat, merkez.lng], 8, { animate: true });
+        var mk = merkezler.find(function (x) { return x.id === id; });
+        if (mk) {
+          map.setView([mk.lat, mk.lng], 8, { animate: true });
         }
       } else {
         m.setStyle({ weight: 2, color: "#ffffff", fillOpacity: 0.45 });
       }
     });
 
-    // Tablo bolumune scroll
     document.querySelector(".tables-section").scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -362,22 +358,48 @@
   function resetFilter() {
     selectedMerkez = null;
 
-    // Dropdown sifirla
     document.getElementById("merkez-select").value = "";
-
-    // Butonu gizle
     document.getElementById("btn-reset").style.display = "none";
+    document.getElementById("btn-detail").style.display = "none";
 
-    // Tablolari tam goster
     initTables(null);
 
-    // Harita marker'larini eski haline getir
     Object.keys(markers).forEach(function (id) {
       markers[id].setStyle({ weight: 2, color: "#ffffff", fillOpacity: 0.75 });
     });
 
-    // Haritayi Turkiye gorunumune dondur
     map.setView([39.0, 35.0], 6, { animate: true });
+  }
+
+  // =========================================================================
+  // DETAY GOSTER / GIZLE
+  // =========================================================================
+
+  function showDetail(merkez_id) {
+    document.getElementById("main-content").style.display = "none";
+    document.getElementById("detail-panel").style.display = "block";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (window.HOROZ_DETAIL && window.HOROZ_DETAIL.initDetail) {
+      window.HOROZ_DETAIL.initDetail(merkez_id);
+    }
+  }
+
+  function hideDetail() {
+    document.getElementById("detail-panel").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+
+    setTimeout(function () {
+      if (map) map.invalidateSize();
+    }, 100);
+
+    if (selectedMerkez) {
+      document.querySelector(".tables-section").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   }
 
   // =========================================================================
@@ -385,7 +407,6 @@
   // =========================================================================
 
   function bindEvents() {
-    // Dropdown degisince
     document.getElementById("merkez-select").addEventListener("change", function () {
       var val = this.value;
       if (val) {
@@ -395,9 +416,18 @@
       }
     });
 
-    // Reset butonu
     document.getElementById("btn-reset").addEventListener("click", function () {
       resetFilter();
+    });
+
+    document.getElementById("btn-detail").addEventListener("click", function () {
+      if (selectedMerkez) {
+        showDetail(selectedMerkez);
+      }
+    });
+
+    document.getElementById("btn-back").addEventListener("click", function () {
+      hideDetail();
     });
   }
 

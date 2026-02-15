@@ -31,111 +31,191 @@
   </header>
 
   <!-- ============================================================= -->
-  <!-- HARITA                                                         -->
+  <!-- ANA ICERIK (harita + kartlar + tablolar)                       -->
   <!-- ============================================================= -->
-  <section class="map-section">
-    <div id="map"></div>
-    <div class="map-legend">
-      <div class="legend-title">Nokta Buyuklugu</div>
-      <div class="legend-item">
-        <span class="legend-circle legend-small"></span> Dusuk Desi
-      </div>
-      <div class="legend-item">
-        <span class="legend-circle legend-large"></span> Yuksek Desi
-      </div>
-      <div class="legend-divider"></div>
-      <div class="legend-title">Renk</div>
-      <div class="legend-item">
-        <span class="legend-color" style="background:#27ae60"></span> Dusuk Hata
-      </div>
-      <div class="legend-item">
-        <span class="legend-color" style="background:#e74c3c"></span> Yuksek Hata
-      </div>
-    </div>
-  </section>
+  <div id="main-content">
 
-  <!-- ============================================================= -->
-  <!-- OZET KARTLAR                                                   -->
-  <!-- ============================================================= -->
-  <section class="summary-section">
-    <div class="summary-cards">
-      <div class="card">
-        <div class="card-label">Toplam Merkez</div>
-        <div class="card-value" id="stat-merkez">-</div>
-      </div>
-      <div class="card">
-        <div class="card-label">En Sik Top-3'e Giren Model</div>
-        <div class="card-value" id="stat-best-model">-</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Ort. Holdout Hata (%)</div>
-        <div class="card-value" id="stat-avg-hata">-</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Son Guncelleme</div>
-        <div class="card-value" id="stat-update">-</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================= -->
-  <!-- TABLO FILTRE                                                   -->
-  <!-- ============================================================= -->
-  <section class="filter-section">
-    <div class="filter-bar">
-      <div class="filter-left">
-        <label for="merkez-select">Aktarma Merkezi:</label>
-        <select id="merkez-select">
-          <option value="">Tumu</option>
-        </select>
-      </div>
-      <div class="filter-right">
-        <button id="btn-reset" class="btn-reset" style="display:none">Filtreyi Kaldir</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================= -->
-  <!-- TABLOLAR                                                       -->
-  <!-- ============================================================= -->
-  <section class="tables-section">
-    <div class="table-container">
-      <div class="table-card">
-        <h2>Validation WMAE Siralamasi</h2>
-        <div class="table-wrapper">
-          <table id="table-wmae">
-            <thead>
-              <tr>
-                <th>Merkez</th>
-                <th>Model</th>
-                <th>WMAE</th>
-                <th>Sira</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+    <!-- HARITA -->
+    <section class="map-section">
+      <div id="map"></div>
+      <div class="map-legend">
+        <div class="legend-title">Nokta Buyuklugu</div>
+        <div class="legend-item">
+          <span class="legend-circle legend-small"></span> Dusuk Desi
+        </div>
+        <div class="legend-item">
+          <span class="legend-circle legend-large"></span> Yuksek Desi
+        </div>
+        <div class="legend-divider"></div>
+        <div class="legend-title">Renk</div>
+        <div class="legend-item">
+          <span class="legend-color" style="background:#27ae60"></span> Dusuk Hata
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background:#e74c3c"></span> Yuksek Hata
         </div>
       </div>
-      <div class="table-card">
-        <h2>Holdout Hata Karsilastirmasi</h2>
-        <div class="table-wrapper">
-          <table id="table-holdout">
-            <thead>
-              <tr>
-                <th>Merkez</th>
-                <th>Model</th>
-                <th>Tahmin Toplam</th>
-                <th>Gercek Toplam</th>
-                <th>Hata %</th>
-                <th>Sira</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+    </section>
+
+    <!-- OZET KARTLAR -->
+    <section class="summary-section">
+      <div class="summary-cards">
+        <div class="card">
+          <div class="card-label">Toplam Merkez</div>
+          <div class="card-value" id="stat-merkez">-</div>
+        </div>
+        <div class="card">
+          <div class="card-label">En Sik Top-3'e Giren Model</div>
+          <div class="card-value" id="stat-best-model">-</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Ort. Holdout Hata (%)</div>
+          <div class="card-value" id="stat-avg-hata">-</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Son Guncelleme</div>
+          <div class="card-value" id="stat-update">-</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- TABLO FILTRE -->
+    <section class="filter-section">
+      <div class="filter-bar">
+        <div class="filter-left">
+          <label for="merkez-select">Aktarma Merkezi:</label>
+          <select id="merkez-select">
+            <option value="">Tumu</option>
+          </select>
+        </div>
+        <div class="filter-right">
+          <button id="btn-detail" class="btn-detail" style="display:none">Detay</button>
+          <button id="btn-reset" class="btn-reset" style="display:none">Filtreyi Kaldir</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLOLAR -->
+    <section class="tables-section">
+      <div class="table-container">
+        <div class="table-card">
+          <h2>Validation WMAE Siralamasi</h2>
+          <div class="table-wrapper">
+            <table id="table-wmae">
+              <thead>
+                <tr>
+                  <th>Merkez</th>
+                  <th>Model</th>
+                  <th>WMAE</th>
+                  <th>Sira</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-card">
+          <h2>Holdout Hata Karsilastirmasi</h2>
+          <div class="table-wrapper">
+            <table id="table-holdout">
+              <thead>
+                <tr>
+                  <th>Merkez</th>
+                  <th>Model</th>
+                  <th>Tahmin Toplam</th>
+                  <th>Gercek Toplam</th>
+                  <th>Hata %</th>
+                  <th>Sira</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /main-content -->
+
+  <!-- ============================================================= -->
+  <!-- DETAY PANELI (varsayilan gizli)                                -->
+  <!-- ============================================================= -->
+  <div id="detail-panel" style="display:none">
+
+    <!-- Geri don + baslik -->
+    <section class="detail-header-section">
+      <div class="detail-header">
+        <button id="btn-back" class="btn-back">&larr; Ana Sayfaya Don</button>
+        <h2 id="detail-title">Merkez Detay</h2>
+      </div>
+    </section>
+
+    <!-- Filtreler -->
+    <section class="detail-filters-section">
+      <div class="detail-filters">
+        <div class="detail-filter-group">
+          <label for="detail-merkez-select">Aktarma Merkezi:</label>
+          <select id="detail-merkez-select"></select>
+        </div>
+        <div class="detail-filter-group">
+          <label>Model Secimi (max 3):</label>
+          <div id="model-checkbox-group" class="model-checkbox-group"></div>
+        </div>
+        <div class="detail-filter-group">
+          <label class="anomaly-toggle-label">
+            <input type="checkbox" id="anomaly-toggle">
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Anomali Goster</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chartlar (max 3 slot) -->
+    <section class="detail-charts-section">
+      <div id="chart-slot-0" class="chart-slot"></div>
+      <div id="chart-slot-1" class="chart-slot"></div>
+      <div id="chart-slot-2" class="chart-slot"></div>
+    </section>
+
+    <!-- Anomali ozet tablolari -->
+    <section class="detail-tables-section">
+      <div class="detail-table-container">
+        <div class="table-card">
+          <h2>Model Bazli Anomali Ozeti</h2>
+          <div class="table-wrapper">
+            <table id="table-anomaly-summary">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Toplam Anomali</th>
+                  <th>Kritik (4-5)</th>
+                  <th>Supheli (3)</th>
+                  <th>Olasi (2)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-card">
+          <h2>Birden Fazla Modelin Ortak Isaretledigi Gunler</h2>
+          <div class="table-wrapper">
+            <table id="table-anomaly-dates">
+              <thead>
+                <tr>
+                  <th>Tarih</th>
+                  <th>Model Sayisi</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /detail-panel -->
 
   <!-- ============================================================= -->
   <!-- FOOTER                                                         -->
@@ -152,11 +232,17 @@
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
 
+  <!-- Plotly.js (etkiresimli chartlar icin) -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+
   <!-- Data (build_data.py tarafindan uretilir) -->
   <script src="js/data.js"></script>
 
-  <!-- App -->
+  <!-- App (ana sayfa mantigi) -->
   <script src="js/app.js"></script>
+
+  <!-- Detail (detay paneli mantigi) -->
+  <script src="js/detail.js"></script>
 
 </body>
 </html>
