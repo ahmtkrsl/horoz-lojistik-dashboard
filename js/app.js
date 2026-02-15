@@ -431,6 +431,17 @@
       hideDetail();
     });
 
+    // Sticky compact header
+    var header = document.querySelector(".header");
+    var SCROLL_THRESHOLD = 60;
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.classList.add("compact");
+      } else {
+        header.classList.remove("compact");
+      }
+    });
+
     // Bilgi sidebar ac/kapa
     document.getElementById("btn-info").addEventListener("click", function () {
       openInfoSidebar();
