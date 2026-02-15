@@ -240,44 +240,77 @@
 
       <div class="info-section">
         <h4>Harita</h4>
-        <p>Haritadaki her nokta bir <strong>aktarma merkezini</strong> temsil eder.</p>
+        <p>Haritadaki her nokta bir <strong>aktarma merkezini</strong> temsil eder. Turkiye genelinde <strong>36 aktarma merkezi</strong> bulunmaktadir.</p>
         <ul>
           <li><strong>Nokta buyuklugu:</strong> Tahmini desi hacmini gosterir. Buyuk nokta = yuksek hacim.</li>
           <li><strong>Nokta rengi:</strong> Ortalama hata oranini gosterir. <span class="text-success">Yesil</span> = dusuk hata, <span class="text-danger">kirmizi</span> = yuksek hata.</li>
-          <li>Bir noktanin uzerine geldiginizde ozet bilgiler gorunur. Noktaya <strong>tikladiginizda</strong> tablolar o merkeze filtrelenir.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h4>Tooltip (Noktaya Hover)</h4>
+        <p>Bir aktarma merkezinin uzerine geldiginizde acilan bilgi kutusunda su degerler yer alir:</p>
+        <ul>
+          <li><strong>En iyi 3 model</strong> ve kombine puanlari (puanlama sistemi icin asagiya bakin)</li>
+          <li><strong>Tahmini Desi:</strong> Holdout hata oranina gore <span class="text-danger"><strong>en iyi 3 modelin</strong></span> 30 gunluk tahmin toplamlarinin <strong>ortalamasi</strong>dir. Tek bir modelin degil, en basarili 3 modelin uzlastigi tahmini gosterir.</li>
+          <li><strong>Gercek Desi:</strong> Holdout donemindeki gercek toplam desi degeridir.</li>
+          <li><strong>Ort. Hata:</strong> En iyi 3 modelin holdout hata oranlarinin ortalamasidir.</li>
+        </ul>
+        <p>Noktaya <strong>tikladiginizda</strong> asagidaki tablolar o merkeze filtrelenir.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Ozet Kartlar</h4>
+        <p>Haritanin altindaki 4 kart su bilgileri gosterir:</p>
+        <ul>
+          <li><strong>Toplam Merkez:</strong> Dashboard'daki aktarma merkezi sayisi.</li>
+          <li><strong>En Sik Top-3'e Giren Model:</strong> Tum merkezlerde en cok top 3'e giren model ve kac kez girdiqi.</li>
+          <li><strong>Ort. Holdout Hata (%):</strong> Tum merkezlerin ortalama hata orani.</li>
+          <li><strong>Son Guncelleme:</strong> Verilerin en son islendigi tarih.</li>
         </ul>
       </div>
 
       <div class="info-section">
         <h4>WMAE (Validation Performansi)</h4>
         <p><strong>Weighted Mean Absolute Error (WMAE)</strong>, modellerin egitim sonrasi <strong>validation veri seti</strong> uzerinde ne kadar iyi tahmin yaptigini olcer.</p>
-        <p>Validation veri seti, modelin egitimi sirasinda kullanilmayan ancak model parametrelerinin ayarlanmasinda referans alinan bir donemdir.</p>
+        <p>Validation veri seti, modelin egitimi sirasinda kullanilmayan ancak model parametrelerinin ayarlanmasinda referans alinan bir donemdir. Bu metrik, modelin <strong>gunluk bazda</strong> ne kadar dogru tahmin yaptigini olcer.</p>
         <p><span class="text-danger"><strong>Dusuk WMAE = Daha iyi gunluk tahmin performansi.</strong></span></p>
       </div>
 
       <div class="info-section">
         <h4>Holdout Hata Orani</h4>
-        <p>Holdout veri seti, modelin <span class="text-danger"><strong>hic gormedigi</strong></span> ve egitim/validation surecinde kullanilmayan tamamen ayrilmis bir donemdir.</p>
+        <p>Holdout veri seti, modelin <span class="text-danger"><strong>hic gormedigi</strong></span> ve egitim/validation surecinde kullanilmayan tamamen ayrilmis bir donemdir. Bu test, modelin gercek dunya performansini olcmek icin kullanilir.</p>
         <p>Her model icin bu donemde <strong>30 gunluk tahmin</strong> yaptirilir. Sonrasinda:</p>
-        <ul>
+        <ol>
           <li>Tahmin edilen 30 gunun <strong>toplami</strong> hesaplanir</li>
           <li>Gercek degerlerin <strong>toplami</strong> hesaplanir</li>
           <li>Aradaki fark yuzdesi hesaplanir:</li>
-        </ul>
+        </ol>
         <p class="formula"><span class="text-danger"><strong>Hata (%) = |Tahmin Toplam - Gercek Toplam| / Gercek Toplam x 100</strong></span></p>
         <p>Dusuk hata orani, modelin uzun vadede gercege daha yakin tahmin yaptigi anlamina gelir.</p>
+        <p><strong>Not:</strong> WMAE gunluk dogrulugu olcerken, holdout hata orani <strong>toplam hacim dogrulugunu</strong> olcer. Bir model gunluk bazda dalgali tahmin yapsa bile, toplamda dogru olabilir ya da tam tersi.</p>
       </div>
 
       <div class="info-section">
         <h4>Puanlama Sistemi (Top 3 Model Secimi)</h4>
-        <p>Her aktarma merkezi icin en iyi 3 model su sekilde belirlenir:</p>
+        <p>Her aktarma merkezi icin <strong>en iyi 3 model</strong> su sekilde belirlenir:</p>
         <ol>
           <li><strong>WMAE siralamasi:</strong> Tum modeller WMAE degerine gore kucukten buyuge siralanir (1, 2, 3...)</li>
           <li><strong>Holdout hata siralamasi:</strong> Tum modeller hata oranina gore kucukten buyuge siralanir (1, 2, 3...)</li>
           <li><span class="text-danger"><strong>Kombine puan = WMAE sirasi + Holdout hata sirasi</strong></span></li>
           <li>Kombine puani <strong>en dusuk olan 3 model</strong> = o merkezin en iyi modelleri</li>
         </ol>
-        <p>Bu sistem, hem gunluk dogrulukta hem de toplam tahmin dogrulugunda dengeli olan modelleri secmeyi amaclar.</p>
+        <p>Bu sistem, hem gunluk dogrulukta (WMAE) hem de toplam tahmin dogrulugunda (holdout) <strong>dengeli</strong> olan modelleri secmeyi amaclar. Tek bir metrikte cok iyi ama digerinde kotu olan modeller otomatik olarak elenir.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Tablolar</h4>
+        <p>Ana sayfanin alt kisminda iki tablo bulunur:</p>
+        <ul>
+          <li><strong>Validation WMAE Siralamasi:</strong> Her merkez icin modellerin gunluk tahmin basarisi. <span class="text-success">Yesil satirlar</span> ilk 3 sirayi gosterir.</li>
+          <li><strong>Holdout Hata Karsilastirmasi:</strong> Her merkez icin modellerin 30 gunluk toplam tahmin sonuclari, gercek degerlerle karsilastirma ve hata orani. <span class="text-success">Yesil satirlar</span> en dusuk hatali 3 modeli gosterir.</li>
+        </ul>
+        <p>Dropdown ile tek bir merkeze filtreleyebilir, tablodaki herhangi bir satira tiklayarak o merkezi secebilirsiniz.</p>
       </div>
 
       <div class="info-section">
@@ -285,28 +318,45 @@
         <p>Bir aktarma merkezine tikladiginizda tablolar filtrelenir. Filtre cubugunun yaninda gorunen <strong>"Detay"</strong> butonuna basarak detay sayfasina gecebilirsiniz.</p>
         <p>Detay sayfasinda:</p>
         <ul>
-          <li><strong>Etkilesimli grafik:</strong> Secilen modelin validation donemindeki gercek ve tahmin degerlerini gorursunuz. Grafikte zoom, pan ve hover yapabilirsiniz.</li>
-          <li><strong>Anomali gosterimi:</strong> "Anomali Goster" toggle'ini acarak grafik uzerindeki anomali noktalarini gorebilirsiniz.</li>
-          <li><strong>Model karsilastirma:</strong> Ayni anda <span class="text-danger"><strong>maksimum 3 model</strong></span> secebilir ve alt alta grafik olarak karsilastirabilirsiniz.</li>
-          <li><strong>Anomali ozet tablolari:</strong> Secilen modellerin anomali istatistikleri ve birden fazla modelin ortak isaretledigi tarihler gosterilir.</li>
+          <li><strong>Etkilesimli grafik:</strong> Secilen modelin validation donemindeki gercek ve tahmin degerlerini gorursunuz. Grafikte zoom yapabilir, fareyi gezdirerek gun gun degerleri inceleyebilirsiniz.</li>
+          <li><strong>Anomali gosterimi:</strong> "Anomali Goster" toggle'ini acarak grafik uzerindeki anomali noktalarini gorebilirsiniz. <span class="text-danger">Kirmizi</span> = kritik, <strong style="color:#f97316">turuncu</strong> = supheli, <strong style="color:#eab308">sari</strong> = olasi anomali.</li>
+          <li><strong>Model karsilastirma:</strong> Ayni anda <span class="text-danger"><strong>maksimum 3 model</strong></span> secebilir ve alt alta grafik olarak karsilastirabilirsiniz. Modeller kombine puana gore siralanir.</li>
+          <li><strong>Anomali ozet tablolari:</strong> Secilen modellerin anomali istatistikleri ve birden fazla modelin ayni gune anomali dedigi tarihler gosterilir.</li>
         </ul>
+        <p>Detay sayfasinda farkli bir aktarma merkezine gecmek icin ust kisimdan dropdown'u kullanabilirsiniz. <strong>"Ana Sayfaya Don"</strong> butonuyla harita sayfasina geri donebilirsiniz.</p>
       </div>
 
       <div class="info-section">
         <h4>Anomali Analizi</h4>
-        <p>Anomali tespiti icin <strong>5 farkli algoritma</strong> birlikte kullanilir:</p>
+        <p>Anomali tespiti, bir modelin tahminlerinde <strong>beklenmedik sapmalari</strong> tespit etmeye yarar. Bunun icin <strong>5 farkli algoritma</strong> birlikte kullanilir:</p>
         <ol>
-          <li>Isolation Forest</li>
-          <li>One-Class SVM</li>
-          <li>Autoencoder</li>
-          <li>Local Outlier Factor (LOF)</li>
-          <li>Elliptic Envelope</li>
+          <li><strong>Isolation Forest</strong> &mdash; Veriyi izole ederek anomali tespit eder</li>
+          <li><strong>One-Class SVM</strong> &mdash; Normal veri sinirini ogrenir, disinda kalanlari isaretler</li>
+          <li><strong>Autoencoder</strong> &mdash; Sinir agi ile veriyi sikistirip geri acar, hata yuksekse anomali</li>
+          <li><strong>Local Outlier Factor (LOF)</strong> &mdash; Yerel yogunluga bakarak anomali bulur</li>
+          <li><strong>Elliptic Envelope</strong> &mdash; Verinin istatistiksel dagilimina uymayanlari tespit eder</li>
         </ol>
-        <p>Her algoritma bagimsiz olarak "anomali var mi?" sorusuna oy verir. Toplam oy sayisina gore seviye belirlenir:</p>
+        <p>Her algoritma bagimsiz olarak <strong>"anomali var mi?"</strong> sorusuna oy verir. Toplam oy sayisina gore seviye belirlenir:</p>
         <ul>
-          <li><span class="text-danger"><strong>Kritik Anomali (4-5 oy):</strong></span> Algoritmalarin buyuk cogunlugu hemfikir. Ciddi sapma.</li>
+          <li><span class="text-danger"><strong>Kritik Anomali (4-5 oy):</strong></span> Algoritmalarin buyuk cogunlugu hemfikir. Ciddi sapma. Mutlaka incelenmeli.</li>
           <li><strong style="color:#f97316">Supheli Anomali (3 oy):</strong> Orta duzey uzlasma. Incelenmeye deger.</li>
           <li><strong style="color:#eab308">Olasi Anomali (2 oy):</strong> Zayif sinyal. Dikkatli takip gerektirebilir.</li>
+        </ul>
+        <p><strong>Neden 5 algoritma?</strong> Tek bir algoritma yanlis alarm verebilir. Birden fazla algoritmanin ayni gune "anomali" demesi, o gundeki sapmanin gercek olduguna dair guveni arttirir.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Kullanilan Modeller</h4>
+        <p>Her aktarma merkezi icin asagidaki tahmin modelleri egitilir ve karsilastirilir:</p>
+        <ul>
+          <li><strong>Prophet</strong> &mdash; Facebook tarafindan gelistirilen zaman serisi modeli. Mevsimsellik ve tatil etkilerini iyi yakalar.</li>
+          <li><strong>Stacked LSTM / BiLSTM</strong> &mdash; Derin ogrenme modelleri. Karmasik oruntuleri ogrenebilir.</li>
+          <li><strong>PatchTST</strong> &mdash; Transformer tabanli zaman serisi modeli. Uzun vadeli bagimliliklari yakalar.</li>
+          <li><strong>DLinear</strong> &mdash; Basit ama etkili dogrusal model. Karmasik modellere yakin sonuc verebilir.</li>
+          <li><strong>NBEATS / NHITS</strong> &mdash; Ozel zaman serisi mimarileri. Coklu olcek ve frekanslari ayri ayri modeller.</li>
+          <li><strong>TiDE</strong> &mdash; Encoder-decoder tabanli zaman serisi modeli.</li>
+          <li><strong>TSMixer</strong> &mdash; Cok degiskenli zaman serisi icin tasarlanmis MLP tabanli model.</li>
+          <li><strong>Chronos-2</strong> &mdash; Amazon tarafindan gelistirilen onceden egitilmis (foundation) model.</li>
         </ul>
       </div>
 
