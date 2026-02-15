@@ -81,6 +81,7 @@
     initDropdown();
     initTables();
     bindEvents();
+    initWelcomePopup();
   });
 
   // =========================================================================
@@ -428,6 +429,62 @@
 
     document.getElementById("btn-back").addEventListener("click", function () {
       hideDetail();
+    });
+
+    // Bilgi sidebar ac/kapa
+    document.getElementById("btn-info").addEventListener("click", function () {
+      openInfoSidebar();
+    });
+
+    document.getElementById("btn-sidebar-close").addEventListener("click", function () {
+      closeInfoSidebar();
+    });
+
+    document.getElementById("info-overlay").addEventListener("click", function () {
+      closeInfoSidebar();
+    });
+
+    // ESC ile sidebar kapat
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeInfoSidebar();
+      }
+    });
+  }
+
+  // =========================================================================
+  // BILGI SIDEBAR
+  // =========================================================================
+
+  function openInfoSidebar() {
+    document.getElementById("info-sidebar").classList.add("sidebar-open");
+    document.getElementById("info-overlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeInfoSidebar() {
+    document.getElementById("info-sidebar").classList.remove("sidebar-open");
+    document.getElementById("info-overlay").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  // =========================================================================
+  // ILK GIRIS POP-UP
+  // =========================================================================
+
+  function initWelcomePopup() {
+    var STORAGE_KEY = "horoz_welcome_seen";
+
+    if (localStorage.getItem(STORAGE_KEY)) {
+      return;
+    }
+
+    var popup = document.getElementById("welcome-popup");
+    popup.style.display = "flex";
+
+    document.getElementById("btn-welcome-ok").addEventListener("click", function () {
+      popup.style.display = "none";
+      localStorage.setItem(STORAGE_KEY, "1");
     });
   }
 

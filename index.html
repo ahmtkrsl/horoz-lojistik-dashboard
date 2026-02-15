@@ -25,8 +25,11 @@
   <!-- ============================================================= -->
   <header class="header">
     <div class="header-content">
-      <h1>Horoz Lojistik</h1>
-      <p class="header-subtitle">Aktarma Merkezi Tahmin Performans Dashboard</p>
+      <div class="header-left">
+        <h1>Horoz Lojistik</h1>
+        <p class="header-subtitle">Aktarma Merkezi Tahmin Performans Dashboard</p>
+      </div>
+      <button id="btn-info" class="btn-info" title="Kullanim Kilavuzu">i</button>
     </div>
   </header>
 
@@ -223,6 +226,106 @@
   <footer class="footer">
     <p>Horoz Lojistik - Multivariate Time Series Forecasting Projesi</p>
   </footer>
+
+  <!-- ============================================================= -->
+  <!-- BILGI SIDEBAR                                                  -->
+  <!-- ============================================================= -->
+  <div id="info-overlay" class="info-overlay"></div>
+  <aside id="info-sidebar" class="info-sidebar">
+    <div class="sidebar-header">
+      <h3>Kullanim Kilavuzu</h3>
+      <button id="btn-sidebar-close" class="btn-sidebar-close">&times;</button>
+    </div>
+    <div class="sidebar-body">
+
+      <div class="info-section">
+        <h4>Harita</h4>
+        <p>Haritadaki her nokta bir <strong>aktarma merkezini</strong> temsil eder.</p>
+        <ul>
+          <li><strong>Nokta buyuklugu:</strong> Tahmini desi hacmini gosterir. Buyuk nokta = yuksek hacim.</li>
+          <li><strong>Nokta rengi:</strong> Ortalama hata oranini gosterir. <span class="text-success">Yesil</span> = dusuk hata, <span class="text-danger">kirmizi</span> = yuksek hata.</li>
+          <li>Bir noktanin uzerine geldiginizde ozet bilgiler gorunur. Noktaya <strong>tikladiginizda</strong> tablolar o merkeze filtrelenir.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h4>WMAE (Validation Performansi)</h4>
+        <p><strong>Weighted Mean Absolute Error (WMAE)</strong>, modellerin egitim sonrasi <strong>validation veri seti</strong> uzerinde ne kadar iyi tahmin yaptigini olcer.</p>
+        <p>Validation veri seti, modelin egitimi sirasinda kullanilmayan ancak model parametrelerinin ayarlanmasinda referans alinan bir donemdir.</p>
+        <p><span class="text-danger"><strong>Dusuk WMAE = Daha iyi gunluk tahmin performansi.</strong></span></p>
+      </div>
+
+      <div class="info-section">
+        <h4>Holdout Hata Orani</h4>
+        <p>Holdout veri seti, modelin <span class="text-danger"><strong>hic gormedigi</strong></span> ve egitim/validation surecinde kullanilmayan tamamen ayrilmis bir donemdir.</p>
+        <p>Her model icin bu donemde <strong>30 gunluk tahmin</strong> yaptirilir. Sonrasinda:</p>
+        <ul>
+          <li>Tahmin edilen 30 gunun <strong>toplami</strong> hesaplanir</li>
+          <li>Gercek degerlerin <strong>toplami</strong> hesaplanir</li>
+          <li>Aradaki fark yuzdesi hesaplanir:</li>
+        </ul>
+        <p class="formula"><span class="text-danger"><strong>Hata (%) = |Tahmin Toplam - Gercek Toplam| / Gercek Toplam x 100</strong></span></p>
+        <p>Dusuk hata orani, modelin uzun vadede gercege daha yakin tahmin yaptigi anlamina gelir.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Puanlama Sistemi (Top 3 Model Secimi)</h4>
+        <p>Her aktarma merkezi icin en iyi 3 model su sekilde belirlenir:</p>
+        <ol>
+          <li><strong>WMAE siralamasi:</strong> Tum modeller WMAE degerine gore kucukten buyuge siralanir (1, 2, 3...)</li>
+          <li><strong>Holdout hata siralamasi:</strong> Tum modeller hata oranina gore kucukten buyuge siralanir (1, 2, 3...)</li>
+          <li><span class="text-danger"><strong>Kombine puan = WMAE sirasi + Holdout hata sirasi</strong></span></li>
+          <li>Kombine puani <strong>en dusuk olan 3 model</strong> = o merkezin en iyi modelleri</li>
+        </ol>
+        <p>Bu sistem, hem gunluk dogrulukta hem de toplam tahmin dogrulugunda dengeli olan modelleri secmeyi amaclar.</p>
+      </div>
+
+      <div class="info-section">
+        <h4>Detay Sayfasi</h4>
+        <p>Bir aktarma merkezine tikladiginizda tablolar filtrelenir. Filtre cubugunun yaninda gorunen <strong>"Detay"</strong> butonuna basarak detay sayfasina gecebilirsiniz.</p>
+        <p>Detay sayfasinda:</p>
+        <ul>
+          <li><strong>Etkilesimli grafik:</strong> Secilen modelin validation donemindeki gercek ve tahmin degerlerini gorursunuz. Grafikte zoom, pan ve hover yapabilirsiniz.</li>
+          <li><strong>Anomali gosterimi:</strong> "Anomali Goster" toggle'ini acarak grafik uzerindeki anomali noktalarini gorebilirsiniz.</li>
+          <li><strong>Model karsilastirma:</strong> Ayni anda <span class="text-danger"><strong>maksimum 3 model</strong></span> secebilir ve alt alta grafik olarak karsilastirabilirsiniz.</li>
+          <li><strong>Anomali ozet tablolari:</strong> Secilen modellerin anomali istatistikleri ve birden fazla modelin ortak isaretledigi tarihler gosterilir.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h4>Anomali Analizi</h4>
+        <p>Anomali tespiti icin <strong>5 farkli algoritma</strong> birlikte kullanilir:</p>
+        <ol>
+          <li>Isolation Forest</li>
+          <li>One-Class SVM</li>
+          <li>Autoencoder</li>
+          <li>Local Outlier Factor (LOF)</li>
+          <li>Elliptic Envelope</li>
+        </ol>
+        <p>Her algoritma bagimsiz olarak "anomali var mi?" sorusuna oy verir. Toplam oy sayisina gore seviye belirlenir:</p>
+        <ul>
+          <li><span class="text-danger"><strong>Kritik Anomali (4-5 oy):</strong></span> Algoritmalarin buyuk cogunlugu hemfikir. Ciddi sapma.</li>
+          <li><strong style="color:#f97316">Supheli Anomali (3 oy):</strong> Orta duzey uzlasma. Incelenmeye deger.</li>
+          <li><strong style="color:#eab308">Olasi Anomali (2 oy):</strong> Zayif sinyal. Dikkatli takip gerektirebilir.</li>
+        </ul>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ============================================================= -->
+  <!-- ILK GIRIS POP-UP                                               -->
+  <!-- ============================================================= -->
+  <div id="welcome-popup" class="welcome-popup" style="display:none">
+    <div class="welcome-popup-backdrop"></div>
+    <div class="welcome-popup-card">
+      <div class="welcome-popup-icon">&#9432;</div>
+      <h3>Hosgeldiniz!</h3>
+      <p>Dashboard'u kullanmadan once sag ustteki <strong>"i"</strong> butonuna tiklayarak <strong>kullanim kilavuzunu</strong> okumanizi oneririz.</p>
+      <p class="welcome-popup-hint">Kilavuzda puanlama sistemi, hata hesaplamalari ve detay sayfasi hakkinda bilgiler bulunmaktadir.</p>
+      <button id="btn-welcome-ok" class="btn-welcome-ok">Anladim</button>
+    </div>
+  </div>
 
   <!-- ============================================================= -->
   <!-- SCRIPTS                                                        -->
