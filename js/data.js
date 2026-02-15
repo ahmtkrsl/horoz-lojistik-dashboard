@@ -10,7 +10,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 10.5,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 2,
           "hata_rank": 1,
           "kombine": 3,
@@ -19,7 +19,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1662483.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 3,
           "kombine": 4,
@@ -39,7 +39,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2962,
           "wmae_rank": 1,
@@ -51,7 +51,7 @@ const DASHBOARD_DATA = {
           "fark": -260681.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3548,
           "wmae_rank": 2,
@@ -213,7 +213,7 @@ const DASHBOARD_DATA = {
           "fark": -152217.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3295,
           "wmae_rank": 3,
@@ -225,7 +225,7 @@ const DASHBOARD_DATA = {
           "fark": -224900.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3337,
           "wmae_rank": 4,
@@ -375,7 +375,7 @@ const DASHBOARD_DATA = {
           "fark": -235543.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3215,
           "wmae_rank": 4,
@@ -399,7 +399,7 @@ const DASHBOARD_DATA = {
           "fark": -477167.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3624,
           "wmae_rank": 6,
@@ -460,7 +460,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 2.6,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 3,
           "hata_rank": 1,
           "kombine": 4,
@@ -469,7 +469,7 @@ const DASHBOARD_DATA = {
           "tahmin": 12364272.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 2,
           "hata_rank": 3,
           "kombine": 5,
@@ -501,7 +501,7 @@ const DASHBOARD_DATA = {
           "fark": -1835055.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.1568,
           "wmae_rank": 2,
@@ -513,7 +513,7 @@ const DASHBOARD_DATA = {
           "fark": -507653.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.1726,
           "wmae_rank": 3,
@@ -619,7 +619,7 @@ const DASHBOARD_DATA = {
           "tahmin": 2199331.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 4,
           "hata_rank": 4,
           "kombine": 8,
@@ -675,7 +675,7 @@ const DASHBOARD_DATA = {
           "fark": -281031.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2919,
           "wmae_rank": 4,
@@ -687,7 +687,7 @@ const DASHBOARD_DATA = {
           "fark": -241024.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3149,
           "wmae_rank": 5,
@@ -760,7 +760,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 6.11,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 2,
           "hata_rank": 1,
           "kombine": 3,
@@ -801,7 +801,7 @@ const DASHBOARD_DATA = {
           "fark": 7975085.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.108,
           "wmae_rank": 2,
@@ -861,7 +861,7 @@ const DASHBOARD_DATA = {
           "fark": 3692557.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.1651,
           "wmae_rank": 7,
@@ -928,7 +928,7 @@ const DASHBOARD_DATA = {
           "tahmin": 760929.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 4,
           "hata_rank": 3,
           "kombine": 7,
@@ -975,7 +975,7 @@ const DASHBOARD_DATA = {
           "fark": -338595.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4432,
           "wmae_rank": 4,
@@ -1011,7 +1011,7 @@ const DASHBOARD_DATA = {
           "fark": -8398.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.4933,
           "wmae_rank": 7,
@@ -1113,7 +1113,7 @@ const DASHBOARD_DATA = {
           "fark": -338013.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3526,
           "wmae_rank": 3,
@@ -1149,7 +1149,7 @@ const DASHBOARD_DATA = {
           "fark": 55917.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3945,
           "wmae_rank": 6,
@@ -1275,7 +1275,7 @@ const DASHBOARD_DATA = {
           "fark": -418445.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3668,
           "wmae_rank": 4,
@@ -1299,7 +1299,7 @@ const DASHBOARD_DATA = {
           "fark": -302483.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3744,
           "wmae_rank": 6,
@@ -1413,7 +1413,7 @@ const DASHBOARD_DATA = {
           "fark": -175404.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3382,
           "wmae_rank": 3,
@@ -1437,7 +1437,7 @@ const DASHBOARD_DATA = {
           "fark": -17884.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3388,
           "wmae_rank": 5,
@@ -1510,7 +1510,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 7.86,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 3,
           "hata_rank": 1,
           "kombine": 4,
@@ -1519,7 +1519,7 @@ const DASHBOARD_DATA = {
           "tahmin": 5541442.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 1,
           "hata_rank": 3,
           "kombine": 4,
@@ -1539,7 +1539,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.1872,
           "wmae_rank": 1,
@@ -1563,7 +1563,7 @@ const DASHBOARD_DATA = {
           "fark": -1191510.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2005,
           "wmae_rank": 3,
@@ -1660,7 +1660,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 14.48,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 5,
           "kombine": 6,
@@ -1689,7 +1689,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4924,
           "wmae_rank": 1,
@@ -1737,7 +1737,7 @@ const DASHBOARD_DATA = {
           "fark": -134227.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.5414,
           "wmae_rank": 5,
@@ -1810,7 +1810,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 5.43,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 1,
           "hata_rank": 4,
           "kombine": 5,
@@ -1819,7 +1819,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1964625.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 2,
           "hata_rank": 5,
           "kombine": 7,
@@ -1839,7 +1839,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2483,
           "wmae_rank": 1,
@@ -1851,7 +1851,7 @@ const DASHBOARD_DATA = {
           "fark": -157318.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.269,
           "wmae_rank": 2,
@@ -1960,7 +1960,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 11.74,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 5,
           "hata_rank": 1,
           "kombine": 6,
@@ -1969,7 +1969,7 @@ const DASHBOARD_DATA = {
           "tahmin": 2235462.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 3,
           "hata_rank": 3,
           "kombine": 6,
@@ -2013,7 +2013,7 @@ const DASHBOARD_DATA = {
           "fark": -513037.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3207,
           "wmae_rank": 3,
@@ -2037,7 +2037,7 @@ const DASHBOARD_DATA = {
           "fark": -439335.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3369,
           "wmae_rank": 5,
@@ -2151,7 +2151,7 @@ const DASHBOARD_DATA = {
           "fark": -430404.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3132,
           "wmae_rank": 2,
@@ -2175,7 +2175,7 @@ const DASHBOARD_DATA = {
           "fark": -104313.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3768,
           "wmae_rank": 4,
@@ -2278,7 +2278,7 @@ const DASHBOARD_DATA = {
           "tahmin": 643463.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 3,
           "kombine": 4,
@@ -2289,7 +2289,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4187,
           "wmae_rank": 1,
@@ -2349,7 +2349,7 @@ const DASHBOARD_DATA = {
           "fark": -190993.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.5339,
           "wmae_rank": 6,
@@ -2419,7 +2419,7 @@ const DASHBOARD_DATA = {
           "tahmin": 813204.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 1,
           "hata_rank": 3,
           "kombine": 4,
@@ -2439,7 +2439,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3134,
           "wmae_rank": 1,
@@ -2487,7 +2487,7 @@ const DASHBOARD_DATA = {
           "fark": -134318.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3729,
           "wmae_rank": 5,
@@ -2625,7 +2625,7 @@ const DASHBOARD_DATA = {
           "fark": -865538.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2254,
           "wmae_rank": 4,
@@ -2649,7 +2649,7 @@ const DASHBOARD_DATA = {
           "fark": -1915781.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2394,
           "wmae_rank": 6,
@@ -2710,7 +2710,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 6.62,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 2,
           "hata_rank": 3,
           "kombine": 5,
@@ -2751,7 +2751,7 @@ const DASHBOARD_DATA = {
           "fark": -1372654.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4902,
           "wmae_rank": 2,
@@ -2763,7 +2763,7 @@ const DASHBOARD_DATA = {
           "fark": -197837.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.5121,
           "wmae_rank": 3,
@@ -2860,7 +2860,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 4.79,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 1,
           "hata_rank": 2,
           "kombine": 3,
@@ -2889,7 +2889,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.4158,
           "wmae_rank": 1,
@@ -2901,7 +2901,7 @@ const DASHBOARD_DATA = {
           "fark": 156921.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.429,
           "wmae_rank": 2,
@@ -3019,7 +3019,7 @@ const DASHBOARD_DATA = {
           "tahmin": 7238354.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 4,
           "hata_rank": 2,
           "kombine": 6,
@@ -3028,7 +3028,7 @@ const DASHBOARD_DATA = {
           "tahmin": 6690548.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 6,
           "hata_rank": 1,
           "kombine": 7,
@@ -3075,7 +3075,7 @@ const DASHBOARD_DATA = {
           "fark": 965944.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2645,
           "wmae_rank": 4,
@@ -3099,7 +3099,7 @@ const DASHBOARD_DATA = {
           "fark": 2212839.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3034,
           "wmae_rank": 6,
@@ -3160,7 +3160,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 5.84,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 6,
           "hata_rank": 2,
           "kombine": 8,
@@ -3225,7 +3225,7 @@ const DASHBOARD_DATA = {
           "fark": -655521.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.437,
           "wmae_rank": 4,
@@ -3249,7 +3249,7 @@ const DASHBOARD_DATA = {
           "fark": -110917.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4567,
           "wmae_rank": 6,
@@ -3310,7 +3310,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 8.02,
       "top3_models": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 2,
           "hata_rank": 1,
           "kombine": 3,
@@ -3351,7 +3351,7 @@ const DASHBOARD_DATA = {
           "fark": 74883.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.5734,
           "wmae_rank": 2,
@@ -3411,7 +3411,7 @@ const DASHBOARD_DATA = {
           "fark": 439494.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.6314,
           "wmae_rank": 7,
@@ -3478,7 +3478,7 @@ const DASHBOARD_DATA = {
           "tahmin": 2285681.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 1,
           "hata_rank": 8,
           "kombine": 9,
@@ -3489,7 +3489,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3088,
           "wmae_rank": 1,
@@ -3513,7 +3513,7 @@ const DASHBOARD_DATA = {
           "fark": -679187.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3287,
           "wmae_rank": 3,
@@ -3663,7 +3663,7 @@ const DASHBOARD_DATA = {
           "fark": -64298.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3389,
           "wmae_rank": 3,
@@ -3699,7 +3699,7 @@ const DASHBOARD_DATA = {
           "fark": -76835.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3527,
           "wmae_rank": 6,
@@ -3769,7 +3769,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1361984.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 3,
           "hata_rank": 3,
           "kombine": 6,
@@ -3813,7 +3813,7 @@ const DASHBOARD_DATA = {
           "fark": 84711.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2622,
           "wmae_rank": 3,
@@ -3825,7 +3825,7 @@ const DASHBOARD_DATA = {
           "fark": -60976.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2797,
           "wmae_rank": 4,
@@ -3928,7 +3928,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1038054.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 7,
           "kombine": 8,
@@ -3939,7 +3939,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3763,
           "wmae_rank": 1,
@@ -3951,7 +3951,7 @@ const DASHBOARD_DATA = {
           "fark": -262794.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.378,
           "wmae_rank": 2,
@@ -4069,7 +4069,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1661481.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 5,
           "hata_rank": 3,
           "kombine": 8,
@@ -4125,7 +4125,7 @@ const DASHBOARD_DATA = {
           "fark": -237077.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2969,
           "wmae_rank": 4,
@@ -4137,7 +4137,7 @@ const DASHBOARD_DATA = {
           "fark": -255061.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2999,
           "wmae_rank": 5,
@@ -4251,7 +4251,7 @@ const DASHBOARD_DATA = {
           "fark": -72867.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.195,
           "wmae_rank": 2,
@@ -4311,7 +4311,7 @@ const DASHBOARD_DATA = {
           "fark": 2207.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3041,
           "wmae_rank": 7,
@@ -4360,7 +4360,7 @@ const DASHBOARD_DATA = {
       "ort_hata": 11.23,
       "top3_models": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 3,
           "kombine": 4,
@@ -4378,7 +4378,7 @@ const DASHBOARD_DATA = {
           "tahmin": 672979.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 2,
           "hata_rank": 4,
           "kombine": 6,
@@ -4389,7 +4389,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.4759,
           "wmae_rank": 1,
@@ -4401,7 +4401,7 @@ const DASHBOARD_DATA = {
           "fark": -133275.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.4938,
           "wmae_rank": 2,
@@ -4519,7 +4519,7 @@ const DASHBOARD_DATA = {
           "tahmin": 1293321.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 4,
           "hata_rank": 1,
           "kombine": 5,
@@ -4563,7 +4563,7 @@ const DASHBOARD_DATA = {
           "fark": -142725.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3465,
           "wmae_rank": 3,
@@ -4575,7 +4575,7 @@ const DASHBOARD_DATA = {
           "fark": -81912.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3606,
           "wmae_rank": 4,
@@ -4749,7 +4749,7 @@ const DASHBOARD_DATA = {
           "fark": -156163.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3047,
           "wmae_rank": 6,
@@ -4761,7 +4761,7 @@ const DASHBOARD_DATA = {
           "fark": -297916.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3219,
           "wmae_rank": 7,
@@ -4851,7 +4851,7 @@ const DASHBOARD_DATA = {
           "fark": -364407.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3761,
           "wmae_rank": 2,
@@ -4887,7 +4887,7 @@ const DASHBOARD_DATA = {
           "fark": -163267.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.4058,
           "wmae_rank": 5,
@@ -5001,7 +5001,7 @@ const DASHBOARD_DATA = {
           "fark": -139080.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.3667,
           "wmae_rank": 2,
@@ -5025,7 +5025,7 @@ const DASHBOARD_DATA = {
           "fark": -2867.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.3699,
           "wmae_rank": 4,
@@ -5128,7 +5128,7 @@ const DASHBOARD_DATA = {
           "tahmin": 4147788.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "wmae_rank": 2,
           "hata_rank": 5,
           "kombine": 7,
@@ -5139,7 +5139,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.2723,
           "wmae_rank": 1,
@@ -5151,7 +5151,7 @@ const DASHBOARD_DATA = {
           "fark": -581154.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.2786,
           "wmae_rank": 2,
@@ -5269,7 +5269,7 @@ const DASHBOARD_DATA = {
           "tahmin": 725715.0
         },
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "wmae_rank": 1,
           "hata_rank": 6,
           "kombine": 7,
@@ -5289,7 +5289,7 @@ const DASHBOARD_DATA = {
       ],
       "tum_modeller": [
         {
-          "model": "Stacked_BiLSTM",
+          "model": "BiLSTM",
           "kategori": "DL",
           "wmae": 0.5795,
           "wmae_rank": 1,
@@ -5301,7 +5301,7 @@ const DASHBOARD_DATA = {
           "fark": -177247.0
         },
         {
-          "model": "Stacked_LSTM",
+          "model": "LSTM",
           "kategori": "DL",
           "wmae": 0.5933,
           "wmae_rank": 2,
@@ -5404,17 +5404,17 @@ const DASHBOARD_DATA = {
   "meta": {
     "toplam_merkez": 36,
     "model_listesi": [
+      "BiLSTM",
       "Chronos-2",
       "DLinear",
+      "LSTM",
       "NBEATS",
       "NHITS",
       "PatchTST",
       "Prophet",
-      "Stacked_BiLSTM",
-      "Stacked_LSTM",
       "TiDE"
     ],
-    "guncelleme": "2026-02-15",
+    "guncelleme": "2026-02-16",
     "has_detail": false
   }
 };

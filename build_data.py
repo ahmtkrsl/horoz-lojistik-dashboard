@@ -71,6 +71,17 @@ KOORDINATLAR = {
 }
 
 
+MODEL_ISIM_DONUSUMU = {
+    "Stacked_LSTM": "LSTM",
+    "Stacked_BiLSTM": "BiLSTM",
+}
+
+
+def rename_model(name):
+    """Model adini dashboard icin daha kisa/temiz hale getirir."""
+    return MODEL_ISIM_DONUSUMU.get(name, name)
+
+
 def get_sehir_adi(merkez_id):
     """Aktarma merkezi ID'sinden goruntulenecek sehir adini dondurur."""
     if merkez_id in SEHIR_ESLESMESI:
@@ -88,6 +99,7 @@ def load_daily_data():
     df = pd.read_csv(path, encoding="utf-8-sig")
     print(f"  gunluk_tahminler.csv okundu: {len(df)} satir")
     df_val = df[df["Veri_Seti"] == "Validation"].copy()
+    df_val["Model"] = df_val["Model"].map(lambda x: rename_model(x))
     print(f"  Validation satirlari: {len(df_val)}")
     return df_val
 
@@ -99,6 +111,7 @@ def load_anomaly_data():
         print(f"  [UYARI] anomali_sonuclari.csv bulunamadi: {path}")
         return None
     df = pd.read_csv(path, encoding="utf-8-sig")
+    df["Model"] = df["Model"].map(lambda x: rename_model(x))
     print(f"  anomali_sonuclari.csv okundu: {len(df)} satir")
     return df
 
@@ -158,6 +171,10 @@ def main():
     # --- 3. NaN SATIRLARINI CIKAR ---
     df = df.dropna(subset=["Validation_WMAE", "Holdout_Hata_Orani_%"]).copy()
     print(f"  NaN filtrelendi, kalan: {len(df)}")
+
+    # --- 3b. MODEL ISIMLERINI DONUSTUR ---
+    df["Model"] = df["Model"].map(lambda x: rename_model(x))
+    print(f"  Model isimleri donusturuldu (Stacked_ kaldirildi)")
 
     # --- 4. YENI CSV'LERI OKU ---
     print("\nEk veri kaynaklari:")
