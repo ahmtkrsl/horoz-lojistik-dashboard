@@ -181,12 +181,26 @@
     for (var i = 0; i < 3; i++) {
       var slot = document.getElementById("chart-slot-" + i);
       if (i < selectedModels.length) {
-        renderChart(slot, selectedModels[i], i);
         slot.style.display = "block";
+        renderChart(slot, selectedModels[i], i);
       } else {
         slot.innerHTML = "";
         slot.style.display = "none";
       }
+    }
+
+    // Plotly measures container at newPlot time; when a second chart is added, the first
+    // container may get different layout. Resize all chart divs after layout.
+    if (typeof Plotly !== "undefined" && Plotly.Plots && Plotly.Plots.resize) {
+      requestAnimationFrame(function () {
+        for (var r = 0; r < selectedModels.length; r++) {
+          var slotEl = document.getElementById("chart-slot-" + r);
+          var chartEl = slotEl ? slotEl.querySelector(".chart-container") : null;
+          if (chartEl) {
+            Plotly.Plots.resize(chartEl);
+          }
+        }
+      });
     }
   }
 
